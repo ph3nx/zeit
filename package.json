@@ -8,5 +8,8 @@
     "start": "node server.js"
   },
   "author": "ph3nx.com",
-  "license": "none"
+  "license": "none",
+  "dependencies": {
+    "mime": "^1.2.11"
+  }
 }

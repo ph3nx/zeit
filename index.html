@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Zeit</title>
+<style>
+body {
+  font: 16px helvetica, arial, sans-serif;
+  background-color: #eee;
+  margin: 10px;
+}
+a {
+  text-decoration: none;
+  color: #00f;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #00f;
+}
+a:hover {
+  background-color: #00f;
+  color: #fff;
+}
+h1 {
+  margin: 0;
+}
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+input[type=submit] {
+  padding: 10px 20px;
+  border: 0;
+  font: inherit;
+  color: #fff;
+}
+input[type=submit].g {
+  background-color: #4d4;
+}
+input[type=submit].g:hover {
+  background-color: #2c2;
+}
+form > input:last-child {
+  margin-bottom: 0;
+}
+.box {
+  max-width: 400px;
+  margin: 10px auto;
+  background-color: #fff;
+  padding: 20px;
+}
+.msg {
+  background-color: #beb;
+  padding: 10px;
+  display: none;
+}
+</style>
+<body>
+  <div class="box">
+    <h1>Zeit</h1>
+    <p>Eingabe bitte im Format HH:MM (z.B. 7:15) außer die Pause in Minuten (z.B. 75). Bestätigen sie mit ENTER oder einem Klick auf "Berechne". Bei einem leeren Feld wird der Standardwert verwendet.</p>
+    <p id="msg" class="msg"></p>
+    <form action="/zeit">
+      <label>Anfang
+        <input name="anfang" placeholder="7:00" autofocus>
+      </label>
+      <label>Ende
+        <input name="ende" placeholder="15:50">
+      </label>
+      <label>Pflicht
+        <input name="pflicht" placeholder="7:42">
+      </label>
+      <label>Dauer Pause
+        <input name="pause" placeholder="45">
+      </label>
+      <input type="submit" value="Berechne" class="g">
+    </form>
+  </div>
+  <div class="box"><a href="http://www.vvs.de">Fahrplanauskunft</a></div>
+<script>
+document.forms[0].onsubmit = function(e){
+  e.preventDefault();
+  var anfang = this.anfang.value || '7:00',
+      ende = this.ende.value || '15:50',
+      pflicht = this.pflicht.value || '7:42',
+      pause = this.pause.value || '45';
+  if (anfang && ende && pflicht && pause){
+    anfang = toMin(anfang);
+    ende = toMin(ende);
+    pflicht = toMin(pflicht);
+    pause = parseInt(pause);
+    if (anfang && ende && pflicht && pause){
+      var gleitzeit = ende - anfang - pause - pflicht,
+          msg = 'Sie haben ';
+      if (gleitzeit < 0){
+        msg += display(gleitzeit * (-1)) + ' abgebaut.';
+      } else if (gleitzeit === 0){
+        msg += 'die perfekte Zeit getroffen.';
+      } else {
+        msg += display(gleitzeit) + ' aufgebaut.';
+      }
+      pMsg = document.getElementById('msg');
+      pMsg.innerText = msg;
+      pMsg.style.display = 'block';
+    } else {
+      alert('Ein oder mehrere Felder nicht gültig.');
+    }
+  } else {
+    alert('Bitte alle Felder füllen.');
+  }
+};
+
+function toMin(s){
+  var timeArr = s.match(/(\d+):(\d+)/);
+  var h = parseInt(timeArr[1]),
+      m = parseInt(timeArr[2]);
+  return h * 60 + m;
+}
+
+function display(minutes){
+  if (minutes > 60){
+    var hours = Math.floor(minutes / 60);
+    return hours + ':' + (minutes - hours * 60);
+  } else {
+    return minutes == 1 ? ' eine Minute' : minutes + ' Minuten';
+  }
+}
+</script>
+</body>
+</html>

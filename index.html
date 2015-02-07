@@ -98,7 +98,7 @@ document.forms[0].onsubmit = function(e){
       } else {
         msg += display(gleitzeit) + ' aufgebaut.';
       }
-      pMsg = document.getElementById('msg');
+      var pMsg = document.getElementById('msg');
       pMsg.innerText = msg;
       pMsg.style.display = 'block';
     } else {

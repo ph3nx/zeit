@@ -2,14 +2,9 @@
   "name": "zeit",
   "version": "1.0.0",
   "description": "Berechnet Arbeitszeit.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "ph3nx.com",
-  "license": "none",
-  "dependencies": {
-    "mime": "^1.2.11"
+  "author": "ph3nx.com <me@ph3nx.com>",
+  "engines": {
+    "node": "0.10.36",
+    "npm": "2.5.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "zeit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Berechnet Arbeitszeit.",
   "author": "ph3nx.com <me@ph3nx.com>",
   "engines": {

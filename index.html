@@ -99,7 +99,7 @@ document.forms[0].onsubmit = function(e){
         msg += display(gleitzeit) + ' aufgebaut.';
       }
       var pMsg = document.getElementById('msg');
-      pMsg.innerText = msg;
+      pMsg.innerHTML = msg;
       pMsg.style.display = 'block';
     } else {
       alert('Ein oder mehrere Felder nicht gültig.');

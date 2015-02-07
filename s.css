@@ -1,0 +1,49 @@
+body {
+  font: 16px helvetica, arial, sans-serif;
+  background-color: #eee;
+  margin: 10px;
+}
+a {
+  text-decoration: none;
+  color: #00f;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #00f;
+}
+a:hover {
+  background-color: #00f;
+  color: #fff;
+}
+h1 {
+  margin: 0;
+}
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+input[type=submit] {
+  padding: 10px 20px;
+  border: 0;
+  font: inherit;
+  color: #fff;
+}
+input[type=submit].g {
+  background-color: #4d4;
+}
+input[type=submit].g:hover {
+  background-color: #2c2;
+}
+form > input:last-child {
+  margin-bottom: 0;
+}
+.box {
+  max-width: 400px;
+  margin: 10px auto;
+  background-color: #fff;
+  padding: 20px;
+}
+.msg {
+  background-color: #beb;
+  padding: 10px;
+  display: none;
+}
